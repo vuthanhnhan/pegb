@@ -32,7 +32,7 @@ async def get(request: Request, _id: str):
     product = await product_model.find_one_by_id(_id)
 
     if not product:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=404, detail="Product not found")
 
     return ProductType(**product)
 
@@ -41,7 +41,7 @@ async def get(request: Request, _id: str):
 async def delete(request: Request, _id: int):
     product = await product_model.find_one_by_id(_id)
     if not product:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=404, detail="Product not found")
 
     await product_model.delete_by_id(_id)
 

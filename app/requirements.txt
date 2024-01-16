@@ -7,3 +7,4 @@ debugpy
 pydantic[email]
 cryptography
 bcrypt
+python-jose
