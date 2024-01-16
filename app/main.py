@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-import app.api.v1.users.controller as users
+import app.api.v1.users.router as users
 
 app = FastAPI()
 
