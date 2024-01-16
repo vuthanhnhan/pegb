@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import app.api.v1.users.router as users
+import app.api.v1.products.router as products
 
 app = FastAPI()
 
@@ -18,6 +19,7 @@ async def root():
 
 
 app.include_router(users.router)
+app.include_router(products.router)
 
 def custom_openapi():
     if app.openapi_schema:

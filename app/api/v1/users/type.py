@@ -2,7 +2,7 @@ from pydantic import BaseModel, EmailStr
 from typing import Literal, Optional
 from datetime import datetime
 
-class UsersClientsCreateRequestType(BaseModel):
+class UsersCreateRequestType(BaseModel):
     email: EmailStr
     password: str
 
@@ -10,7 +10,7 @@ class VerifyOtpRequestType(BaseModel):
     email: EmailStr
     otp: str
 
-class UsersClientsLoginResponseType(BaseModel):
+class UsersLoginResponseType(BaseModel):
     email: EmailStr
 
 class UserType(BaseModel):

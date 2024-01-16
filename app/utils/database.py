@@ -34,6 +34,9 @@ class Database():
         result = await self.operation(query, values)
         return result[0] if result else None
 
+    async def find_one_by_id(self, id):
+        return await self.find_one_by({ "id": id })
+
     async def find_all(self):
         query = f"SELECT * FROM {self.table}"
 
@@ -51,10 +54,16 @@ class Database():
         await self.operation(query, values)
 
     async def update_by_id(self, id, new_data):
-        self.update({ "id": id }, new_data)
+        await self.update({ "id": id }, new_data)
 
     async def create(self, data):
         query = f"INSERT INTO {self.table} ({', '.join(data.keys())}) VALUES ({', '.join(['%s']*len(data))})"
         values = list(data.values())
+
+        return await self.operation(query, values)
+
+    async def delete_by_id(self, id):
+        query = f"DELETE FROM {self.table} WHERE id = %s"
+        values = (id,)
 
         await self.operation(query, values)
