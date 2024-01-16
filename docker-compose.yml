@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  web:
+    build: ./app
+    restart: always
+    command: uvicorn app.main:app --reload --port 8000 --host 0.0.0.0
+    volumes:
+      - ./app/:/pegb/app
+    ports:
+      - "8000:8000"
+      - "5678:5678"
+    env_file:
+      - app/.env
+
+  mysql:
+    image: mysql:latest
+    env_file:
+      - database/.env
+    volumes:
+      - ./database:/var/lib/mysql
+    ports:
+      - "3307:3306"
