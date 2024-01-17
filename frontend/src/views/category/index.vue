@@ -30,7 +30,6 @@ export default {
   methods: {
     async getAllProduct() {
       this.products = await getProducts(this.categoryId)
-      console.log("🚀 ~ getAllProduct ~ this.products:", this.products)
     }
   },
   mounted() {

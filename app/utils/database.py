@@ -34,6 +34,15 @@ class Database():
         result = await self.operation(query, values)
         return result[0] if result else None
 
+    async def find_by(self, conditions):
+        query = f"SELECT * FROM {self.table} WHERE "
+        where_clause = ' AND '.join(f"{key} = %s" for key in conditions.keys())
+        query += where_clause
+        values = list(conditions.values())
+
+        result = await self.operation(query, values)
+        return result
+
     async def find_one_by_id(self, id):
         return await self.find_one_by({ "id": id })
 

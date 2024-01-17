@@ -2,7 +2,8 @@
   <div class="product-detail">
     <div class="product-detail-body">
       <div class="title">Product Specifications</div>
-
+      {{ isEdit }}
+      <div @click="() => isEdit = !isEdit" style="float: right; width: 50px;"><i class="el-icon-edit"></i></div>
       <div class="content">
         <div class="content-row">
           <div class="col-1">Category</div>
@@ -20,7 +21,8 @@
         </div>
         <div class="content-row">
           <div class="col-1">Price</div>
-          <div class="col-2">{{ price }}</div>
+          <div v-if="!isEdit" class="col-2">{{ price }}</div>
+          <input v-else class="col-2" v-model="newPrice">
         </div>
       </div>
 
@@ -36,7 +38,7 @@ export default {
   props: {
     productName: {
       type: String,
-      default: "HL Nipple",
+      default: "Some category",
     },
     categoryName: {
       type: String,
@@ -51,6 +53,15 @@ export default {
       default: 200,
     },
   },
+  data() {
+    return {
+      isEdit: false,
+      newPrice: this.price
+    }
+  },
+  methods: {
+
+  }
 };
 </script>
 

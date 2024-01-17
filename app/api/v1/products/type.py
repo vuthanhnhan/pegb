@@ -14,6 +14,7 @@ class ProductCreateResponseType(BaseModel):
     price: float
 
 class ProductType(BaseModel):
+    id: Optional[int]
     category_id: int
     name: str
     price: float

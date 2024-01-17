@@ -4,6 +4,7 @@ from datetime import datetime
 
 class UsersCreateRequestType(BaseModel):
     email: EmailStr
+    name: str
     password: str
 
 class VerifyOtpRequestType(BaseModel):
@@ -12,15 +13,23 @@ class VerifyOtpRequestType(BaseModel):
 
 class UsersCreateResponseType(BaseModel):
     email: EmailStr
+    name: str
 
 class UserType(BaseModel):
     id: Optional[int]
     email: EmailStr
+    name: str
     password: str
     user_type: Optional[Literal['internal', 'external']] = 'external',
     otp: Optional[str]
     expire_otp: Optional[datetime]
     is_verified: Optional[bool] = False
+
+class UserMeResponseType(BaseModel):
+    id: int
+    name: str
+    email: EmailStr
+    user_type: Optional[Literal['internal', 'external']]
 
 class UserLoginRequestType(BaseModel):
     email: EmailStr

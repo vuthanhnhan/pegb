@@ -2,11 +2,12 @@ CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
     user_type ENUM('internal', 'external') NOT NULL DEFAULT 'external',
     otp VARCHAR(6),
     expire_otp TIMESTAMP,
     is_verified BOOLEAN NOT NULL DEFAULT FALSE,
-    department_id: INT NULL,
+    department_id INT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

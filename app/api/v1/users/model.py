@@ -6,8 +6,8 @@ class UserModel(Database):
         super().__init__('user')
 
     async def insert_user(self, user_data: UserType):
-        query = "INSERT INTO user (email, password, user_type, otp, expire_otp) VALUES (%s, %s, %s, %s, %s)"
-        values = (user_data.email, user_data.password, user_data.user_type, user_data.otp, user_data.expire_otp)
+        query = "INSERT INTO user (email, password, name, user_type, otp, expire_otp) VALUES (%s, %s, %s, %s, %s, %s)"
+        values = (user_data.email, user_data.password, user_data.name, user_data.user_type, user_data.otp, user_data.expire_otp)
         return await self.operation(query, values)
     
     async def get_user_by_email(self, email):

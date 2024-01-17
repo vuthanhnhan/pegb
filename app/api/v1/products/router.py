@@ -36,6 +36,13 @@ async def get(request: Request, _id: str):
 
     return ProductType(**product)
 
+@router.get("/category/{_id}")
+async def get_by_category(request: Request, _id: str):
+
+    products = await product_model.find_by({ "category_id": _id })
+
+    return [ProductType(**p) for p in products]
+
 
 @router.delete("/{_id}", status_code=204)
 async def delete(request: Request, _id: int):

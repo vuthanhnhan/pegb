@@ -3,9 +3,9 @@ from .type import *
 from .model import UserModel
 import secrets, string
 import datetime
-from fastapi import HTTPException
-from .const import SECRET_KEY
+from fastapi import HTTPException, Request
 from jose import jwt
+import os
 
 class UserRepository:
     __user_model = UserModel()
@@ -27,7 +27,7 @@ class UserRepository:
         expire = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
         expire = int(expire.timestamp())
         to_encode.update({"expire": expire})
-        encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm="HS256")
+        encoded_jwt = jwt.encode(to_encode, os.getenv('SECRET_KEY'), algorithm="HS256")
         return encoded_jwt
 
     def hash_password(self, password: str) -> str:
@@ -66,3 +66,7 @@ class UserRepository:
         user.is_verified = True
         await self.__user_model.update({ "email": data.email }, { "is_verified": True })
         return await self.__user_model.get_user_by_email(user.email)
+
+    async def get_me(self, request: Request):
+        payload = request.state.payload
+        return await self.__user_model.find_one_by_id(payload['id'])
