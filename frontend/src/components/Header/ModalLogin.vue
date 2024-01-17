@@ -12,28 +12,35 @@
           <el-button @click="isNewUser = false">Login</el-button>
           <el-button @click="isNewUser = true">Register</el-button>
         </el-button-group>
-        <div v-if="isNewUser" class="name">
+        <div v-if="!isVerify">
+          <div v-if="isNewUser" class="name">
+            <el-input
+              v-model="name"
+              name="Name"
+              autocomplete="firstName"
+              placeholder="Name"
+            />
+          </div>
           <el-input
-            v-model="name"
-            name="Name"
-            autocomplete="firstName"
-            placeholder="Name"
+            v-model="email"
+            type="email"
+            placeholder="Email"
+          />
+          <el-input
+            v-model="password"
+            type="password"
+            autocomplete="password"
+            mode="normal"
+            placeholder="Password"
           />
         </div>
         <el-input
-          v-model="email"
-          type="email"
-          placeholder="Email"
-        />
-        <el-input
-          v-model="password"
-          type="password"
-          autocomplete="password"
-          mode="normal"
-          placeholder="Password"
+          v-if="isVerify"
+          v-model="otp"
+          placeholder="otp"
         />
         <el-button
-          @click="() => isNewUser ? handleRegister() : handleLogin()"
+          @click="() => isVerify ? handleVerify() : isNewUser ? handleRegister() : handleLogin()"
           class="submit"
         >Continue</el-button>
     </el-dialog>
@@ -42,7 +49,7 @@
 
 
 <script>
-import { login, register } from '@/services/user'
+import { login, register, verify } from '@/services/user'
 
 export default {
   name: "ModalLogin",
@@ -54,7 +61,9 @@ export default {
       name: '',
       password: '',
       isRegister: false,
-      access_token: localStorage.getItem("access_token")
+      access_token: localStorage.getItem("access_token"),
+      isVerify: false,
+      otp: ''
     }
   },
   computed: {
@@ -80,6 +89,12 @@ export default {
     },
     async handleRegister() {
       await register(this.email, this.name, this.password)
+      this.isVerify = true
+    },
+    async handleVerify() {
+      await verify(this.email, this.otp)
+      this.isVerify = false
+      this.$message('Account verified')
     }
 
   }

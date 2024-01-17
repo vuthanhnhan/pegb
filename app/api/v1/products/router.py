@@ -13,7 +13,9 @@ product_model = ProductModel()
 @router.post("/", responses={
                 201: {"model": ProductCreateResponseType}
                 })
+@require_permission
 async def create(request: Request, data: ProductCreateRequestType):
+    await ProductRepository().check_user_same_department(_id, request.state.payload['id'])
     result = await product_model.create_product(data)
     return ProductCreateResponseType(**result)
 
@@ -48,7 +50,9 @@ async def get_by_category(request: Request, _id: str):
 
 
 @router.delete("/{_id}", status_code=204)
+@require_permission
 async def delete(request: Request, _id: int):
+    await ProductRepository().check_user_same_department(_id, request.state.payload['id'])
     product = await product_model.find_one_by_id(_id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")

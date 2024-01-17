@@ -18,3 +18,8 @@ export const register = async (email, name, password) => {
   const url = process.env.VUE_APP_BACKEND_URL + '/users/register'
   await axios.post(url, { email, name, password });
 }
+
+export const verify = async (email, otp) => {
+  const url = process.env.VUE_APP_BACKEND_URL + '/users/verify-otp'
+  await axios.post(url, { email, otp });
+}

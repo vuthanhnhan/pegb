@@ -26,7 +26,8 @@
     </div>
     <div v-if="transactionInfo">
     </div>
-    <el-button @click="handlePurchase">Purchase</el-button>
+    <el-button v-if="this.products.length" @click="handlePurchase">Purchase</el-button>
+    <div v-else>Please add product to cart</div>
   </div>
 </template>
 
