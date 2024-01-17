@@ -2,6 +2,7 @@ from fastapi import APIRouter, Request, HTTPException, Response
 from .type import *
 from .repository import ProductRepository
 from .model import ProductModel
+from app.utils.auth import require_permission
 
 router = APIRouter(
     prefix="/api/products",
@@ -20,7 +21,9 @@ async def create(request: Request, data: ProductCreateRequestType):
 @router.patch("/{_id}", responses={
                 200: {"model": ProductUpdateResponseType}
                 })
+@require_permission
 async def edit(request: Request, _id: int, data: ProductUpdateRequestType):
+    await ProductRepository().check_user_same_department(_id, request.state.payload['id'])
     result = await product_model.update_product(_id, data)
     return ProductUpdateResponseType(**result)
 

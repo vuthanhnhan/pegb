@@ -56,7 +56,6 @@ export default {
   methods: {
     async getProductDetail(id) {
       this.productData = await getProductById(id);
-      console.log("🚀 ~ getProductDetail ~ this.productData:", this.productData)
     },
   },
   mounted() {

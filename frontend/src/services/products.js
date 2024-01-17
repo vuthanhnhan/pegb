@@ -19,7 +19,7 @@ export const getCategories = async () => {
 };
 
 // create new product
-export const createProduct = (product) => {
-  const url = "http://localhost:5000/product";
-  return axios.post(url, product);
+export const updateProduct = (id, new_product) => {
+  const url = process.env.VUE_APP_BACKEND_URL + '/products/' + id
+  return axios.patch(url, new_product, { headers: { "Authorization": localStorage.getItem("access_token")}});
 };

@@ -17,3 +17,7 @@ class UserModel(Database):
         result = await self.operation(query, values)
         if len(result): return UserType(**result[0])
         return None  
+
+    async def is_same_department(self, user_id, department_id):
+        user = await self.find_one_by_id(user_id)
+        return user['department_id'] == department_id
