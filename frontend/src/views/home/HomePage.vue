@@ -15,13 +15,6 @@
           <div class="title">{{ categoryItem.name }}</div>
         </div>
       </div>
-
-      <!-- Button go to add product -->
-      <div class="add-product-button">
-        <el-button type="primary" @click="onHandleClickAddProduct">
-          Add new product
-        </el-button>
-      </div>
     </div>
 
   </div>
