@@ -24,7 +24,7 @@ Brief project description and purpose.
 
 # Release Notes
 
-## Date: 2023-17-01
+## Date: 2023-01-17
 
 ### Overview
 
@@ -76,6 +76,20 @@ To ensure a seamless deployment of the latest version, make sure to update your 
 
    ```env
    VUE_APP_BACKEND_URL=your_backend_url
+
+### Local Routes for Testing
+
+To facilitate testing and exploration of the latest changes locally, use the following local routes:
+
+1. **Frontend:**
+   - Access the frontend of the application by navigating to [http://localhost](http://localhost) in your web browser.
+
+2. **Backend:**
+   - The backend is accessible at [http://localhost](http://localhost) or [http://localhost:8000](http://localhost:8000)
+   - To read OpenAPI docs at [http://localhost:8000/docs](http://localhost:8000/docs)
+   - Explore API endpoints, perform requests, and interact with the backend services.
+
+Please make sure that your Docker containers or development servers are running to access these local routes.
 
 ### Demonstration Video
 
