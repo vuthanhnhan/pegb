@@ -1,10 +1,10 @@
 version: '3.7'
 
 services:
-  web:
+  backend:
     build: ./app
     restart: always
-    command: uvicorn app.main:app --reload --port 8000 --host 0.0.0.0
+    command: uvicorn app.main:app --reload --port 8000 --host 0.0.0.0 --proxy-headers
     volumes:
       - ./app/:/pegb/app
     ports:
@@ -21,3 +21,14 @@ services:
       - ./database:/var/lib/mysql
     ports:
       - "3307:3306"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html
+      # - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
