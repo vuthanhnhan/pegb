@@ -20,3 +20,9 @@ class OrderType(BaseModel):
     user_id: int
     status: Literal['pending', 'complete'] = 'pending'
     total_amount: float
+
+
+class OrderHistoryResponse(BaseModel):
+    id: int
+    status: Literal['pending', 'complete']
+    total_amount: float

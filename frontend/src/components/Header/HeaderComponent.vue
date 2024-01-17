@@ -14,7 +14,7 @@
           <router-link to="/">Home</router-link>
         </li>
         <li class="el-menu-item">
-          <router-link to="/product">Products</router-link>
+          <router-link to="/history">History</router-link>
         </li>
         <li class="el-menu-item">
           <router-link to="/cart">
