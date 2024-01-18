@@ -85,7 +85,7 @@ To facilitate testing and exploration of the latest changes locally, use the fol
    - Access the frontend of the application by navigating to [http://localhost](http://localhost) in your web browser.
 
 2. **Backend:**
-   - The backend is accessible at [http://localhost](http://localhost) or [http://localhost:8000](http://localhost:8000)
+   - The backend is accessible at [http://localhost/api](http://localhost/api) or [http://localhost:8000](http://localhost:8000)
    - To read OpenAPI docs at [http://localhost:8000/docs](http://localhost:8000/docs)
    - Explore API endpoints, perform requests, and interact with the backend services.
 
