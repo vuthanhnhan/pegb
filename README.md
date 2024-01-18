@@ -30,6 +30,11 @@ Brief project description and purpose.
 
 This release introduces several new features, aimed at improving the overall functionality and user experience of Pinchi Inc's e-commerce system.
 
+### Time Estimates
+Estimated time to complete: 2 days
+
+Actual time to complete: 1.5 days
+
 ### New Features
 
 1. **Customer Categorization:**
